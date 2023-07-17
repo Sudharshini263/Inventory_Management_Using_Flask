@@ -1,0 +1,92 @@
+<!-- templates/locations.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Locations</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        text-align: center; /* Center all text and inline elements */
+        display: flex; /* Use flexbox to center block-level elements */
+        flex-direction: column; /* Stack elements vertically */
+        min-height: 100vh; /* Set minimum height to the viewport height */
+        justify-content: center; /* Center elements vertically */
+        align-items: center; /* Center elements horizontally */
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      form {
+        margin-bottom: 20px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        padding: 5px;
+        width: 200px;
+        margin-bottom: 10px;
+      }
+
+      button {
+        padding: 8px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      /* Center the table */
+      .table-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Locations</h1>
+    <form method="POST" action="{{ url_for('locations') }}">
+      <input
+        type="text"
+        name="location_id"
+        placeholder="Location ID"
+        required
+      />
+      <button type="submit">Add Location</button>
+    </form>
+    <ul>
+      {% for location in locations %}
+      <li>{{ location.location_id }}</li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>

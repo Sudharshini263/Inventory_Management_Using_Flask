@@ -1,0 +1,72 @@
+<!-- templates/report.html -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Product Balances</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        text-align: center; /* Center all text and inline elements */
+        display: flex; /* Use flexbox to center block-level elements */
+        flex-direction: column; /* Stack elements vertically */
+        min-height: 100vh; /* Set minimum height to the viewport height */
+        justify-content: center; /* Center elements vertically */
+        align-items: center; /* Center elements horizontally */
+      }
+
+      h1 {
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 80%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #f2f2f2;
+      }
+
+      /* Apply media query for better table layout on smaller screens */
+      @media (max-width: 768px) {
+        table {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Product Balances</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Product</th>
+          {% for location in locations %}
+          <th>{{ location.location_id }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for product_id, location_balances in balance_grid.items() %}
+        <tr>
+          <td>{{ product_id }}</td>
+          {% for location in locations %}
+          <td>{{ location_balances.get(location.location_id, 0) }}</td>
+          {% endfor %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
